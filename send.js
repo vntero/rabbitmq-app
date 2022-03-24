@@ -24,10 +24,11 @@ amqp.connect('amqp://localhost', function(error0, connection) {
         channel.sendToQueue(queue, Buffer.from(msg));
         console.log(" [x] Sent %s", msg);
       });
+//lastly, we close the connection and exit
+        setTimeout(function() {
+            connection.close();
+            process.exit(0)
+            }, 500);
+
     });
 
-//lastly, we close the connection and exit
-    setTimeout(function() {
-        connection.close();
-        process.exit(0)
-        }, 500);
